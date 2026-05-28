@@ -95,7 +95,7 @@ def solve_1d(simulation_data):
     # SOLVE SYSTEM
     # =================================================
 
-    t_eval = np.linspace(0, 200, 500)
+    t_eval = np.linspace(0, 10, 500)
 
     sol = solve_ivp(
 
@@ -297,7 +297,7 @@ def solve_2d(simulation_data):
     # SOLVE TRAJECTORY
     # =================================================
 
-    t_eval = np.linspace(0, 200, 1000)
+    t_eval = np.linspace(0, 20, 1000)
 
     sol = solve_ivp(
 
