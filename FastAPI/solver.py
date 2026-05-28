@@ -314,9 +314,9 @@ def solve_2d(simulation_data):
     # VECTOR FIELD GRID
     # =================================================
 
-    x_grid = np.linspace(-10, 10, 20)
+    x_grid = np.linspace(-100, 100, 50)
 
-    y_grid = np.linspace(-10, 10, 20)
+    y_grid = np.linspace(-100, 100, 50)
 
     X, Y = np.meshgrid(
         x_grid,
