@@ -206,3 +206,28 @@ def explain(request: dict):
 
             "message": str(e)
         }
+
+@app.post("/recompute")
+def recompute(data: dict):
+
+    try:
+
+        solution_data = solve_system(
+            data["simulation_data"]
+        )
+
+        return {
+
+            "success": True,
+
+            "solution_data": solution_data
+        }
+
+    except Exception as e:
+
+        return {
+
+            "success": False,
+
+            "message": str(e)
+        }
