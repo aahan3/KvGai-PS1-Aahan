@@ -1,6 +1,6 @@
 from openai import OpenAI
 
-from prompt import SYSTEM_PROMPT,key,EXPLAINER_PROMPT
+from prompt import SYSTEM_PROMPT,EXPLAINER_PROMPT
 
 import json
 import os
