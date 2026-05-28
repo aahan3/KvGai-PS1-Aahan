@@ -1,150 +1,84 @@
 SYSTEM_PROMPT = """
 You generate STRICT JSON for dynamical systems.
 
-RULES:
+GENERAL RULES:
+- Return ONLY ONE valid JSON object.
+- No markdown.
+- No explanations.
+- No comments.
+- Use double quotes for all keys.
 
-* Return ONLY valid JSON.
-* No markdown.
-* No explanations.
-* No comments.
-* Use double quotes for all keys.
-* ALWAYS include:
-
-  * system_dimension
-  * simulation
-  * animation_type
-  * visualization_axes
-  * parameters
-  * initial_conditions
-
-VALID animation_type VALUES:
-
-* "phase_particle"
-* "pendulum"
-* "projectile"
-* "spring_mass"
-* "predator_prey"
-* "vector_flow"
-* "orbit"
-* "attractor_2d"
 
 ==================================================
 1D SYSTEMS
-==========
+==================================================
 
-1d systems use:
+1d systems represent:
 
 x'' = f(x0, x1)
 
 Use:
-
-* x0 = position
-* x1 = velocity
+- x0 = position
+- x1 = velocity
 
 ONLY use parameters:
-
-* a
-* b
-* c
+- a
+- b
+- c
 
 FORMAT:
 
 {
-"system_dimension": "1d",
-
-"simulation": "spring_oscillator",
-
-"animation_type": "spring_mass",
-
-"visualization_axes": ["x0", "x1"],
-
-"equation": "-a*x1 - b*x0 + c",
-
-"parameters": {
-"a": 0.2,
-"b": 4,
-"c": 0
-},
-
-"initial_conditions": {
-"x0": 1,
-"v0": 0
-}
+  "system_dimension": "1d",
+  "simulation": "name",
+  "equation": "-a*x1 - b*x0 + c",
+  "parameters": {
+    "a": 0.2,
+    "b": 4,
+    "c": 0
+  },
+  "initial_conditions": {
+    "x0": 1,
+    "v0": 0
+  }
 }
 
 ==================================================
-2D / 3D / 4D SYSTEMS
-====================
+2D SYSTEMS
+==================================================
 
-Use first-order systems:
+2d systems represent:
 
 x' = dx
 y' = dy
 
-Higher dimensional systems may also include:
+Use:
+- x
+- y
 
-* dz
-* dx1
-* dx2
-* dx3
-* dx4
+You may use ANY parameter names.
 
 FORMAT:
 
 {
-"system_dimension": "3d",
-
-"simulation": "lorenz",
-
-"animation_type": "attractor_2d",
-
-"visualization_axes": ["x", "z"],
-
-"equations": {
-
-```
-"dx": "sigma*(y-x)",
-
-"dy": "x*(rho-z)-y",
-
-"dz": "x*y-beta*z"
-```
-
-},
-
-"parameters": {
-
-```
-"sigma": 10,
-
-"rho": 28,
-
-"beta": 2.667
-```
-
-},
-
-"initial_conditions": {
-
-```
-"x0": 1,
-
-"y0": 1,
-
-"z0": 1
-```
-
+  "system_dimension": "2d",
+  "simulation": "name",
+  "equations": {
+    "dx": "alpha*x - beta*x*y",
+    "dy": "delta*x*y - gamma*y"
+  },
+  "parameters": {
+    "alpha": 1,
+    "beta": 0.1,
+    "gamma": 0.2,
+    "delta": 0.3
+  },
+  "initial_conditions": {
+    "x0": 10,
+    "y0": 5
+  }
 }
-}
-
-IMPORTANT:
-
-* visualization_axes MUST contain EXACTLY TWO variables.
-* The frontend uses visualization_axes for 2D rendering.
-* Generic nonlinear systems should use:
-  "animation_type": "phase_particle"
-  """
-
+"""
 
 EXPLAINER_PROMPT = """
 You are an expert in dynamical systems and physics simulations.
